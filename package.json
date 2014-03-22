@@ -1,0 +1,23 @@
+{
+  "name": "lib-route-generator",
+  "version": "0.0.0",
+  "description": "generate client side routes from parameter lists",
+  "main": "index.js",
+  "scripts": {
+    "test": "jshint index.js && tap test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/groundwater/node-lib-route-tokenizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/groundwater/node-lib-route-tokenizer/issues"
+  },
+  "homepage": "https://github.com/groundwater/node-lib-route-tokenizer",
+  "devDependencies": {
+    "tap": "^0.4.8",
+    "jshint": "^2.4.4"
+  }
+}
