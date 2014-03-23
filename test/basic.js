@@ -1,35 +1,35 @@
 var test = require('tap').test;
-var Tokenizer = require('../index.js')();
+var Generator = require('../index.js')();
 
 test(function (t) {
-  var token = Tokenizer.NewFromString('/a/b/:c');
-  var string = token.format({c: 'C'});
+  var generator = Generator.NewFromString('/a/b/:c');
+  var string = generator.format({c: 'C'});
 
   t.equal(string, '/a/b/C');
   t.end();
 });
 
 test(function (t) {
-  var token = Tokenizer.NewFromString('/a/b/:c');
+  var generator = Generator.NewFromString('/a/b/:c');
 
   t.throws(function (){
-    token.format({});
+    generator.format({});
   });
 
   t.end();
 });
 
 test(function (t) {
-  var token = Tokenizer.NewFromString('/a/b');
-  var out = token.format();
+  var generator = Generator.NewFromString('/a/b');
+  var out = generator.format();
 
   t.equal(out, '/a/b');
   t.end();
 });
 
 test(function (t) {
-  var token = Tokenizer.NewFromString('/:a/:b');
-  var out = token.format({
+  var generator = Generator.NewFromString('/:a/:b');
+  var out = generator.format({
     a: 'A',
     b: 'B'
   });
@@ -39,15 +39,15 @@ test(function (t) {
 });
 
 test(function (t) {
-  var token = Tokenizer.NewFromString('/:a/:b');
-  var out = token.format({
+  var generator = Generator.NewFromString('/:a/:b');
+  var out = generator.format({
     a: 'A',
     b: 'B'
   });
 
-  t.ok(token.hasToken('a'));
-  t.ok(token.hasToken('b'));
-  t.ifError(token.hasToken('c'));
+  t.ok(generator.hasToken('a'));
+  t.ok(generator.hasToken('b'));
+  t.ifError(generator.hasToken('c'));
 
   t.end();
 });

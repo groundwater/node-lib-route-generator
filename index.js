@@ -1,37 +1,39 @@
-function Tokenized() {
-  this.tokens   = [];
+"use strict";
+
+function Generator() {
+  this.generators   = [];
   this.segments = [];
 }
 
-Tokenized.prototype.hasToken = function hasToken(token) {
-  return (this.indexOf(token) >= 0);
+Generator.prototype.hasToken = function hasToken(generator) {
+  return (this.indexOf(generator) >= 0);
 };
 
-Tokenized.prototype.indexOf = function indexOf(token) {
-  return (this.tokens.indexOf(token));
+Generator.prototype.indexOf = function indexOf(generator) {
+  return (this.generators.indexOf(generator));
 };
 
-Tokenized.prototype.format = function format(params) {
+Generator.prototype.format = function format(params) {
   return this.segments.map(function(segment){
     return segment(params);
   }).join('/');
 };
 
-Tokenized.NewEmpty = function NewEmpty() {
-  var t = new Tokenized();
+Generator.NewEmpty = function NewEmpty() {
+  var t = new Generator();
   return t;
 };
 
-Tokenized.NewFromString = function NewFromString(string) {
-  var token = this.NewEmpty();
+Generator.NewFromString = function NewFromString(string) {
+  var generator = this.NewEmpty();
   var split = string.split('/');
   split.forEach(function (segment) {
     var isToken = segment[0] === ':';
 
     if (isToken) {
       var segName = segment.substr(1);
-      token.tokens.push(segName);
-      token.segments.push(function (params) {
+      generator.generators.push(segName);
+      generator.segments.push(function (params) {
         var param = params[segName];
 
         if (param === undefined) throw new Error('Parameters Missing Key: ' + segName);
@@ -39,16 +41,17 @@ Tokenized.NewFromString = function NewFromString(string) {
         return param;
       });
     }
-    else token.segments.push(function () {
-      return segment;
-    });
+    else generator.segments.push(function () {
+        return segment;
+      }
+    );
   });
 
-  return token;
+  return generator;
 };
 
 function inject(deps) {
-  return Object.create(Tokenized, deps);
+  return Object.create(Generator, deps);
 }
 
 function defaults() {

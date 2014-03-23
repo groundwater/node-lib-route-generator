@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/groundwater/node-lib-route-tokenizer.git"
+    "url": "git://github.com/groundwater/node-lib-route-generator.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/groundwater/node-lib-route-tokenizer/issues"
+    "url": "https://github.com/groundwater/node-lib-route-generator/issues"
   },
-  "homepage": "https://github.com/groundwater/node-lib-route-tokenizer",
+  "homepage": "https://github.com/groundwater/node-lib-route-generator",
   "devDependencies": {
     "tap": "^0.4.8",
     "jshint": "^2.4.4"

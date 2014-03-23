@@ -1,29 +1,34 @@
-# lib-route-tokenizer
+# lib-route-generator
 
-[![Build Status](https://travis-ci.org/groundwater/node-lib-route-tokenizer.svg?branch=master)](https://travis-ci.org/groundwater/node-lib-route-tokenizer)
+[![Build Status](https://travis-ci.org/groundwater/node-lib-route-generator.svg?branch=master)](https://travis-ci.org/groundwater/node-lib-route-generator)
 
 ## install
 
 ```bash
-npm install --save lib-route-tokenizer
+npm install --save lib-route-generator
 ```
 
 ## usage
 
 ```javascript
-var Tokenizer = require('lib-route-tokenizer')();
-var token     = Tokenizer.NewFromString('/users/:name');
+var Generator = require('lib-route-generator')();
+var generator = Generator.NewFromString('/users/:name');
 
-token.format({name: 'bob'});
+generator.format({name: 'bob'});
 // /users/bob
 ```
 
 errors
 
 ```javascript
-var Tokenizer = require('lib-route-tokenizer')();
-var token     = Tokenizer.NewFromString('/users/:name');
+var Generator = require('lib-route-generator')();
+var generator = Generator.NewFromString('/users/:name');
 
-token.format({});
+generator.format({});
 // Error: Parameters Missing Key: name
 ```
+
+## see also
+
+- [lib-route-matcher](https://github.com/groundwater/node-lib-route-matcher)
+  client side library for generating routes from a matcher
