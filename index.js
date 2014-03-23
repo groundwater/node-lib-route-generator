@@ -1,8 +1,8 @@
 "use strict";
 
 function Generator() {
-  this.generators   = [];
-  this.segments = [];
+  this.generators = [];
+  this.segments   = [];
 }
 
 Generator.prototype.hasToken = function hasToken(generator) {
@@ -13,10 +13,20 @@ Generator.prototype.indexOf = function indexOf(generator) {
   return (this.generators.indexOf(generator));
 };
 
-Generator.prototype.format = function format(params) {
-  return this.segments.map(function(segment){
+Generator.prototype.format = function format(params, options) {
+  var out = this.segments.map(function(segment){
     return segment(params);
   }).join('/');
+
+  if (options) {
+    var query = [];
+    Object.keys(options).forEach(function (key) {
+      query.push(key + '=' + options[key]);
+    });
+    if (query.length > 0) out += '?' + query.join('&');
+  }
+
+  return out;
 };
 
 Generator.NewEmpty = function NewEmpty() {
