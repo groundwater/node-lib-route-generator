@@ -18,6 +18,15 @@ generator.format({name: 'bob'});
 // /users/bob
 ```
 
+a more compelx route
+
+```javascript
+var generator = Generator.NewFromString('/find/:category/:query');
+
+generator.format({category: 'shoes', query: 'leather+black'}, {order: 'desc', limit: 100});
+// /find/shoes/leather+black?order=desc&limit=100
+```
+
 errors
 
 ```javascript
