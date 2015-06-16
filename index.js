@@ -19,11 +19,7 @@ Generator.prototype.format = function format(params, options) {
   }).join('/');
 
   if (options) {
-    var query = [];
-    Object.keys(options).forEach(function (key) {
-      query.push(key + '=' + options[key]);
-    });
-    if (query.length > 0) out += '?' + query.join('&');
+    out += this.require.Url.format({query: options})
   }
 
   return out;
@@ -31,6 +27,7 @@ Generator.prototype.format = function format(params, options) {
 
 Generator.NewEmpty = function NewEmpty() {
   var t = new Generator();
+  t.require = this
   return t;
 };
 
@@ -66,7 +63,9 @@ function inject(deps) {
 
 function defaults() {
   var deps = {
-
+    Url: {
+      value: require('url')
+    }
   };
   return inject(deps);
 }

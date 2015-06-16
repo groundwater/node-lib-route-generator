@@ -16,3 +16,11 @@ test("omit ? if query is empty", function (t) {
   t.equal(string, '/a/b/C');
   t.end();
 });
+
+test("query string is encoded", function (t) {
+  var generator = Generator.NewFromString('/');
+  var string = generator.format({}, {q: 'a + b / c'});
+
+  t.equal(string, '/?q=a%20%2B%20b%20%2F%20c');
+  t.end();
+});
