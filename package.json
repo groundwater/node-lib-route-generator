@@ -1,6 +1,6 @@
 {
   "name": "lib-route-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "generate client side routes from parameter lists",
   "main": "index.js",
   "scripts": {
